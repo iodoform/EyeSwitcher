@@ -35,6 +35,7 @@ public class ExchangeCube : UdonSharpBehaviour
 
     public override void OnPlayerTriggerEnter(VRCPlayerApi player) 
     { 
+        //プレイヤーが2名以上キューブに接触している場合は視点を入れ替える
         if(_firstPlayer != null)
         {
             if(Networking.LocalPlayer == _firstPlayer)
@@ -46,12 +47,10 @@ public class ExchangeCube : UdonSharpBehaviour
                 BorrowViewPoints(_firstPlayer);
             }
             _firstPlayer = null;
-            Debug.Log("hoge");
         }
         else
         {
             _firstPlayer = player;
-            Debug.Log("fuga");
         }
     }
 
@@ -59,8 +58,10 @@ public class ExchangeCube : UdonSharpBehaviour
     {
         _firstPlayer = null;
     }
+    
     private void BorrowViewPoints(VRCPlayerApi player)
     {
+        //入れ替わった状態で，入れ替わり相手以外とは入れ替われない．
         if(_haveBorrowedViewPoints && (player==_borrowedPlayer))
         {
             _viewPointCamera.enabled = false;
@@ -75,9 +76,11 @@ public class ExchangeCube : UdonSharpBehaviour
         }
     }
 
-    private void ChangeIPD(){
+    private void ChangeIPD()
+    {
         float scale = 1/_scaleChecker.transform.localScale.x;
         _viewPointCamera.farClipPlane*=scale;
         _viewPointCamera.nearClipPlane*=scale;
     }
+
 }
