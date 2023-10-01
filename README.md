@@ -3,6 +3,8 @@
 Eye SwitcherはVRChat向けのギミックです．
 プレイヤーの視点を入れ替えることができます．
 
+[booth](https://iodoform.booth.pm/items/4385748)にて無料配布中です。
+
 # 使い方
 <img src="その他\俯瞰.PNG" width="500">
 <img src="その他\説明画像.PNG" width="500">
